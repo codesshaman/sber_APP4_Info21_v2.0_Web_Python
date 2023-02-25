@@ -11,3 +11,11 @@ app_route = Blueprint('route', __name__)
 @app_route.route('/index.html')
 def index():
   return 'Hello, my world!'
+
+"Функция отображения страницы 'о нас'"
+@app_route.route('/about')
+@app_route.route('/about.php')
+@app_route.route('/about.htm')
+@app_route.route('/about.html')
+def index():
+  return 'О нас'
