@@ -6,7 +6,7 @@ if [ ! -d "venv" ]; then
 fi
 if [ ! -f "requirements.txt" ]; then
     touch requirements.txt
-    pip install django
+    pip install Flask
     pip freeze >> requirements.txt
     pip install --upgrade pip
   else
