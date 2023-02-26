@@ -1,21 +1,21 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 app_route = Blueprint('route', __name__)
 
-
-"Функция отображения индексной страницы"
 @app_route.route('/')
 @app_route.route('/index')
 @app_route.route('/index.php')
 @app_route.route('/index.htm')
 @app_route.route('/index.html')
 def index():
-  return 'Hello, my world!'
+  "Функция отображения индексной страницы"
+  return render_template('index.html')
 
-"Функция отображения страницы 'о нас'"
+
 @app_route.route('/about')
 @app_route.route('/about.php')
 @app_route.route('/about.htm')
 @app_route.route('/about.html')
-def index():
-  return 'О нас'
+def about():
+  "Функция отображения страницы 'о нас'"
+  return render_template('about.html')

@@ -7,6 +7,7 @@ fi
 if [ ! -f "requirements.txt" ]; then
     touch requirements.txt
     pip install Flask
+    pip install flake8
     pip freeze >> requirements.txt
     pip install --upgrade pip
   else
