@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  flask:
+    build: .
+    # healthcheck:
+    #   test: ["CMD-SHELL", "curl -f http://localhost:5000 || exit 1"]
+    #   interval: 5s
+    #   timeout: 5s
+    #   retries: 3
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    container_name: flask
+    command: python main.py
+    depends_on:
+      - postgres
+
+  postgres:
+    image: 'postgres:alpine3.17'
+    environment:
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      # If your wanna nopass authentication, 
+      # you can use the following option:
+      # POSTGRES_HOST_AUTH_METHOD: "trust"
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    container_name: postgres
+
+  pgadmin:
+    image: 'dpage/pgadmin4:2023-01-16-3'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: $PGADMIN_EMAIL
+      PGADMIN_DEFAULT_PASSWORD: $PGADMIN_PASSWORD
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8432 || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+    ports:
+      - "8432:80"
+    container_name: pgadmin
+    depends_on:
+      - postgres
