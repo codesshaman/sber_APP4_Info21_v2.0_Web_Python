@@ -10,7 +10,7 @@
   
   .index-section-1 .u-image-1 {
     min-height: 400px;
-    background-image: url("header.jpg");
+    background-image: url("images/header.jpg");
   }
   
   .index-section-1 .u-container-layout-1 {
@@ -103,7 +103,7 @@
   
   .index-section-2 .u-image-1 {
     min-height: 431px;
-    background-image: url("moscow-3.webp");
+    background-image: url("images/moscow-3.webp");
     background-position: 50% 50%;
   }
   
@@ -173,7 +173,7 @@
   }
 
   .data-section-1 {
-    background-image: url("header.jpg");
+    background-image: url("images/header.jpg");
     background-position: 50% 50%;
   }
   
@@ -248,7 +248,7 @@
   }
 
   .op-section-1 {
-    background-image: url("header.jpg");
+    background-image: url("images/header.jpg");
     background-position: 50% 50%;
   }
   
@@ -311,7 +311,7 @@
   }
 
   .ab-section-1 {
-    background-image: url("header.jpg");
+    background-image: url("images/header.jpg");
     background-position: 50% 50%;
   }
   
@@ -374,7 +374,7 @@
   .ab-section-2 .u-image-1 {
     width: 193px;
     height: 193px;
-    background-image: url("1.jpg");
+    background-image: url("images/1.jpg");
     background-position: 50% 50%;
     margin: 0 auto;
   }
@@ -416,7 +416,7 @@
     width: 193px;
     height: 193px;
     object-position: 50% 94.17%;
-    background-image: url("2.png");
+    background-image: url("images/2.png");
     background-position: 50% 50%;
     margin: 0 auto;
   }
@@ -457,7 +457,7 @@
   .ab-section-2 .u-image-3 {
     width: 193px;
     height: 193px;
-    background-image: url("3.png");
+    background-image: url("images/3.png");
     background-position: 50% 50%;
     margin: 0 auto;
   }

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for
 from controllers.routes import app_route
 
 app = Flask(__name__)
