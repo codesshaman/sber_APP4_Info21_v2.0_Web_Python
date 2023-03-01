@@ -19,3 +19,11 @@ def index():
 def about():
   "Функция отображения страницы 'о нас'"
   return render_template('about.html')
+
+@app_route.route('/test')
+@app_route.route('/test.php')
+@app_route.route('/test.htm')
+@app_route.route('/test.html')
+def test():
+  "Функция отображения страницы 'о нас'"
+  return render_template('test.html')
