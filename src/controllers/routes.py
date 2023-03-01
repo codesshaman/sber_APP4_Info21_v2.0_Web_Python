@@ -11,6 +11,21 @@ def index():
   "Функция отображения индексной страницы"
   return render_template('index.html')
 
+@app_route.route('/data')
+@app_route.route('/data.php')
+@app_route.route('/data.htm')
+@app_route.route('/data.html')
+def data():
+  "Функция отображения страницы 'дынна'"
+  return render_template('data.html')
+
+@app_route.route('/operations')
+@app_route.route('/operations.php')
+@app_route.route('/operations.htm')
+@app_route.route('/operations.html')
+def operations():
+  "Функция отображения страницы 'операции'"
+  return render_template('operations.html')
 
 @app_route.route('/about')
 @app_route.route('/about.php')
@@ -20,10 +35,3 @@ def about():
   "Функция отображения страницы 'о нас'"
   return render_template('about.html')
 
-@app_route.route('/test')
-@app_route.route('/test.php')
-@app_route.route('/test.htm')
-@app_route.route('/test.html')
-def test():
-  "Функция отображения страницы 'о нас'"
-  return render_template('test.html')
