@@ -1,8 +1,11 @@
 from flask import Flask, url_for
 from controllers.routes import app_route
-from controllers.db_connection import db_connect
+from controllers.db_connection import connect
+
 
 app = Flask(__name__)
+app.config.from_pyfile("config.py")
+# connect.init_app(app)
 app.register_blueprint(app_route)
 
 if __name__ == '__main__':
