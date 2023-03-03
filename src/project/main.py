@@ -1,6 +1,6 @@
+from controllers.all_path import above_directory
 from flask import Flask, url_for
 from controllers.routes import app_route
-from controllers.db_connection import connect
 
 
 app = Flask(__name__)
