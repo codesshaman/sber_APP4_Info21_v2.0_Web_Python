@@ -12,6 +12,8 @@ services:
     ports:
       - "5000:5000"
     container_name: flask
+    volumes:
+      - ./project:/app:z
     command: python main.py
     depends_on:
       - postgres
