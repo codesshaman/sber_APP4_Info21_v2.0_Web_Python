@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template
 from model.templates.datapage import table_data
-
 app_route = Blueprint('route', __name__)
 
 @app_route.route('/')

@@ -28,8 +28,8 @@ help:
 	@echo -e "$(WARN_COLOR)- make clean			: Cleaning configuration$(NO_COLOR)"
 
 build:
-	@printf "$(OK_COLOR)==== Building configuration ${name}... ====$(NO_COLOR)\n"
-	@docker-compose -f ./docker-compose.yml up -d --build
+	@printf "$(YELLOW)==== Building configuration ${name}... ====$(NO_COLOR)\n"
+	@docker -compose -f ./docker-compose.yml up -d --build
 
 down:
 	@printf "$(ERROR_COLOR)==== Stopping configuration ${name}... ====$(NO_COLOR)\n"

@@ -2,7 +2,6 @@ from controllers.all_path import above_directory
 from flask import Flask, url_for
 from controllers.routes import app_route
 
-
 app = Flask(__name__)
 # connect.init_app(app)
 app.register_blueprint(app_route)

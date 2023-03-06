@@ -1,5 +1,4 @@
-from controllers.db_connection import sql_execute
+from model.database.connection import connect
 
 def table_data():
-    data = sql_execute("""SELECT Nickname FROM Peers;""")
-    return data
+    return connect()
