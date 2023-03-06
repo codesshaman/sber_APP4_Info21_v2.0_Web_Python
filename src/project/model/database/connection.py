@@ -1,6 +1,7 @@
 from configparser import ConfigParser
 import psycopg2
 
+
 def parse_config(filename="config.ini", section="postgresql"):
     "Считываем конфигурацию"
     parser = ConfigParser()
@@ -15,7 +16,9 @@ def parse_config(filename="config.ini", section="postgresql"):
     return db
 
 def connect():
+    "Функция подключения к базе"
     connection = None
+    result = None
     try:
         params = parse_config()
         print('Connection to the DataBase')
@@ -26,6 +29,7 @@ def connect():
         cur.execute('SELECT version()')
         db_version = cur.fetchone()
         print(db_version)
+        result = db_version
         cur.close()
     except(Exception, psycopg2.DatabaseError) as err:
         print(err)
@@ -33,5 +37,4 @@ def connect():
         if connection is not None:
             connection.close()
             print('Connection terminated')
-
-connect()
+    return result
