@@ -45,7 +45,7 @@ ps:
 
 clean: down
 	@printf "$(ERROR_COLOR)==== Cleaning configuration ${name}... ====$(NO_COLOR)\n"
-	@docker system prune -a
+	@yes | docker system prune -a
 
 fclean:
 	@printf "$(ERROR_COLOR)==== Total clean of all configurations docker ====$(NO_COLOR)\n"
