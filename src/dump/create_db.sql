@@ -4,96 +4,7 @@ create table Peers
     Birthday date not null
 );
 
-create table Tasks
-(
-    Title      varchar primary key UNIQUE DEFAULT NULL,
-    ParentTask varchar                    DEFAULT NULL,
-    foreign key (ParentTask) references Tasks (Title),
-    MaxXP      integer not null CHECK (MaxXP > 0)
-);
-
-CREATE TYPE check_status AS ENUM ('Start', 'Success', 'Failure');
-
-create table Checks
-(
-    ID     serial primary key,
-    Peer   varchar,
-    foreign key (Peer) references Peers (Nickname),
-    Task   varchar,
-    foreign key (Task) references Tasks (Title),
-    "Date" date
-);
-
-create table P2P
-(
-    ID           serial primary key,
-    "Check"      bigint,
-    foreign key ("Check") references Checks (ID),
-    CheckingPeer varchar,
-    foreign key (CheckingPeer) references Peers (Nickname),
-    State        check_status,
-    "Time"       TIME without time zone
-);
-
-create table Verter
-(
-    ID      serial primary key,
-    "Check" bigint,
-    foreign key ("Check") references Checks (ID),
-    State   check_status,
-    "Time"  TIME without time zone
-);
-
-create table TransferredPoints
-(
-    ID           serial primary key,
-    CheckingPeer varchar,
-    foreign key (CheckingPeer) references Peers (Nickname),
-    CheckedPeer  varchar CHECK ( CheckedPeer != CheckingPeer ),
-    foreign key (CheckedPeer) references Peers (Nickname),
-    PointsAmount integer
-);
-
-create table Friends
-(
-    ID    serial primary key,
-    Peer1 varchar not null,
-    foreign key (Peer1) references Peers (Nickname),
-    Peer2 varchar not null,
-    foreign key (Peer2) references Peers (Nickname)
-);
-
-create table Recommendations
-(
-    ID              serial primary key,
-    Peer            varchar,
-    foreign key (Peer) references Peers (Nickname),
-    RecommendedPeer varchar,
-    foreign key (RecommendedPeer) references Peers (Nickname)
-);
-
-create table XP
-(
-    ID       serial primary key,
-    "Check"  bigint,
-    foreign key ("Check") references Checks (ID),
-    XPAmount integer,
-    CHECK (XPAmount >= 0)
-);
-
-CREATE TYPE time_status AS ENUM ('1', '2');
-
-create table TimeTracking
-(
-    ID     serial primary key,
-    Peer   varchar,
-    foreign key (Peer) references Peers (Nickname),
-    "Date" date,
-    "Time" TIME without time zone,
-    State  int check (State in (1, 2))
-);
-
-NSERT INTO Peers (Nickname, Birthday)
+INSERT INTO Peers (Nickname, Birthday)
 VALUES ('Diluc', '1986-04-30'),
        ('Bennett', '2000-02-29'),
        ('Dori', '1999-12-21'),
@@ -103,6 +14,13 @@ VALUES ('Diluc', '1986-04-30'),
        ('Raiden', '1960-06-26'),
        ('Klee', '2015-07-27');
 
+create table Tasks
+(
+    Title      varchar primary key UNIQUE DEFAULT NULL,
+    ParentTask varchar                    DEFAULT NULL,
+    foreign key (ParentTask) references Tasks (Title),
+    MaxXP      integer not null CHECK (MaxXP > 0)
+);
 
 INSERT INTO Tasks (Title, ParentTask, MaxXP)
 VALUES ('C2_SimpleBashUtils', NULL, 250),
@@ -119,7 +37,17 @@ VALUES ('C2_SimpleBashUtils', NULL, 250),
        ('DO5_SimpleDocker', 'DO3_Linux_Monitoring', 300),
        ('DO6_CI/CD', 'DO5_SimpleDocker', 300);
 
+CREATE TYPE check_status AS ENUM ('Start', 'Success', 'Failure');
 
+create table Checks
+(
+    ID     serial primary key,
+    Peer   varchar,
+    foreign key (Peer) references Peers (Nickname),
+    Task   varchar,
+    foreign key (Task) references Tasks (Title),
+    "Date" date
+);
 
 INSERT INTO Checks (ID, Peer, Task, "Date")
 VALUES (0, 'Diluc', 'C2_SimpleBashUtils', '2022-08-30'),
@@ -136,7 +64,16 @@ VALUES (0, 'Diluc', 'C2_SimpleBashUtils', '2022-08-30'),
        (11, 'Diluc', 'C8_3DViewer_v1.0', '2022-10-10'),
        (12, 'Keqing', 'C2_SimpleBashUtils', '2022-10-20');
 
-
+create table P2P
+(
+    ID           serial primary key,
+    "Check"      bigint,
+    foreign key ("Check") references Checks (ID),
+    CheckingPeer varchar,
+    foreign key (CheckingPeer) references Peers (Nickname),
+    State        check_status,
+    "Time"       TIME without time zone
+);
 
 INSERT INTO P2P ("Check", CheckingPeer, State, "Time")
 VALUES (0, 'Bennett', 'Start', '13:00'),
@@ -166,6 +103,14 @@ VALUES (0, 'Bennett', 'Start', '13:00'),
        (12, 'Raiden', 'Start', '14:00'),
        (12, 'Raiden', 'Success', '14:30');
 
+create table Verter
+(
+    ID      serial primary key,
+    "Check" bigint,
+    foreign key ("Check") references Checks (ID),
+    State   check_status,
+    "Time"  TIME without time zone
+);
 
 INSERT INTO Verter ("Check", State, "Time")
 VALUES (0, 'Start', '12:31'),
@@ -198,6 +143,15 @@ VALUES (0, 'Start', '12:31'),
        (12, 'Start', '14:30'),
        (12, 'Failure', '14:33');
 
+create table TransferredPoints
+(
+    ID           serial primary key,
+    CheckingPeer varchar,
+    foreign key (CheckingPeer) references Peers (Nickname),
+    CheckedPeer  varchar CHECK ( CheckedPeer != CheckingPeer ),
+    foreign key (CheckedPeer) references Peers (Nickname),
+    PointsAmount integer
+);
 
 INSERT INTO TransferredPoints (CheckingPeer, CheckedPeer, PointsAmount)
 VALUES ('Bennett', 'Diluc', 1),
@@ -215,6 +169,14 @@ VALUES ('Bennett', 'Diluc', 1),
        ('Diluc', 'Raiden', 1),
        ('Keqing', 'Raiden', 1);
 
+create table Friends
+(
+    ID    serial primary key,
+    Peer1 varchar not null,
+    foreign key (Peer1) references Peers (Nickname),
+    Peer2 varchar not null,
+    foreign key (Peer2) references Peers (Nickname)
+);
 
 INSERT INTO Friends (Peer1, Peer2)
 VALUES ('Diluc', 'Bennett'),
@@ -222,6 +184,15 @@ VALUES ('Diluc', 'Bennett'),
        ('Raiden', 'Zhongli'),
        ('Qiqi', 'Bennett'),
        ('Klee', 'Qiqi');
+
+create table Recommendations
+(
+    ID              serial primary key,
+    Peer            varchar,
+    foreign key (Peer) references Peers (Nickname),
+    RecommendedPeer varchar,
+    foreign key (RecommendedPeer) references Peers (Nickname)
+);
 
 INSERT INTO Recommendations (Peer, RecommendedPeer)
 VALUES ('Diluc', 'Bennett'),
@@ -238,6 +209,15 @@ VALUES ('Diluc', 'Bennett'),
        ('Keqing', 'Dori'),
        ('Raiden', 'Diluc');
 
+create table XP
+(
+    ID       serial primary key,
+    "Check"  bigint,
+    foreign key ("Check") references Checks (ID),
+    XPAmount integer,
+    CHECK (XPAmount >= 0)
+);
+
 INSERT INTO XP ("Check", XPAmount)
 VALUES (0, 250),
        (1, 250),
@@ -250,7 +230,17 @@ VALUES (0, 250),
        (10, 500),
        (11, 750);
 
+CREATE TYPE time_status AS ENUM ('1', '2');
 
+create table TimeTracking
+(
+    ID     serial primary key,
+    Peer   varchar,
+    foreign key (Peer) references Peers (Nickname),
+    "Date" date,
+    "Time" TIME without time zone,
+    State  int check (State in (1, 2))
+);
 
 INSERT INTO TimeTracking (Peer, "Date", "Time", State)
 VALUES ('Dori', '2022-10-09', '18:32', 1),

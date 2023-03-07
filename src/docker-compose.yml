@@ -42,7 +42,7 @@ services:
         ipv4_address: 172.168.0.8
 
   pgadmin:
-    image: 'dpage/pgadmin4:2023-01-16-3'
+    image: 'dpage/pgadmin4:6.20'
     environment:
       PGADMIN_DEFAULT_EMAIL: $PGADMIN_EMAIL
       PGADMIN_DEFAULT_PASSWORD: $PGADMIN_PASSWORD
