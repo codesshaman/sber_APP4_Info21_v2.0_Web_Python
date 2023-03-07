@@ -1,4 +1,4 @@
-from model.database.sql_query import sql_query
+from model.database.sql_query import *
 
 def table_data():
-    return sql_query("SELECT * FROM recommendations;")
+    return fetchall_query("SELECT * FROM public.peers ORDER BY nickname ASC;")
