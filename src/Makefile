@@ -29,7 +29,7 @@ help:
 
 build:
 	@printf "$(YELLOW)==== Building configuration ${name}... ====$(NO_COLOR)\n"
-	@docker -compose -f ./docker-compose.yml up -d --build
+	@docker-compose -f ./docker-compose.yml up -d --build
 
 down:
 	@printf "$(ERROR_COLOR)==== Stopping configuration ${name}... ====$(NO_COLOR)\n"
