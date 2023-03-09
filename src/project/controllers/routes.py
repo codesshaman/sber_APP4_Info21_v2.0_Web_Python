@@ -38,4 +38,3 @@ def operations():
 def about():
   "Функция отображения страницы 'о нас'"
   return render_template('about.html')
-

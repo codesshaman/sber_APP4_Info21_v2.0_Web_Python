@@ -15,3 +15,12 @@ def all_tables():
                          "WHERE table_schema NOT IN "
                          "('information_schema','pg_catalog');")
     return arr
+
+def all_links():
+    arr = all_tables()
+    res = []
+    i = 0
+    for tbl in arr:
+        res[i] = tbl[2]
+        i += 1
+    return res
