@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from model.templates.datapage import table_data
+from model.templates.datapage import *
 app_route = Blueprint('route', __name__)
 
 @app_route.route('/')
@@ -16,10 +16,12 @@ def index():
 @app_route.route('/data.htm')
 @app_route.route('/data.html')
 def data():
-  "Функция отображения страницы 'дынне'"
-  # data = sql_execute("SELECT tp.checkingPeer, tp.checkedPeer, tp.pointsamount FROM TransferredPoints;")
-  data = table_data()
-  return render_template('data.html', data=data)
+  "Функция отображения страницы 'данные'"
+  titles = table_titles("peers")
+  data = table_rows("peers")
+  name = "Peers"
+  all = all_tables()
+  return render_template('data.html', all=all, data=data, titles=titles, name=name)
 
 @app_route.route('/operations')
 @app_route.route('/operations.php')
