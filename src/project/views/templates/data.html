@@ -1,4 +1,5 @@
 {% extends 'page.html' %}
+<p><a name="top" class="topLink"></a></p>
 
 {% block title %}Данные{% endblock %}
 
@@ -9,6 +10,7 @@
     <section class="u-align-center u-clearfix op-section-2" id="sec-847a">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="u-expanded-width u-table u-table-responsive u-table-1">
+
 <!--    ВЫВОД ТАБЛИЦЫ ПОЛЬЗОВАТЕЛЕЙ     -->
 <!--            <h2 class="u-align-center u-text u-text-default u-text-1">-->
 <!--                All tables<br>-->
@@ -16,7 +18,7 @@
             <thead class="u-palette-4-base u-table-header u-table-header-1">
               <tr style="height: 48px;">
               {% for tbl in all %}
-                <a class="u-border-1 u-border-custom-color-1 u-table-cell">{{tbl[2].title()}}</a>
+                <a class="u-border-1 u-border-custom-color-1 u-table-cell" link={{links}}>{{tbl[2].title()}}</a>
               {% endfor %}
               </tr>
             </thead>
@@ -47,6 +49,8 @@
               {% endfor %}
             </tbody>
           </table>
+            {{links}}
+            <p><a href="#top" class="topLink">Наверх</a></p>
 <!--    ВЫВОД ТАБЛИЦЫ      -->
 <!--          <table class="u-table-entity u-table-entity-1">-->
 <!--            <colgroup>-->

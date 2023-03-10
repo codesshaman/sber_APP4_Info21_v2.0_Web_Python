@@ -20,7 +20,11 @@ def all_links():
     arr = all_tables()
     res = []
     i = 0
-    for tbl in arr:
-        res[i] = tbl[2]
-        i += 1
+    try:
+        while i < len(arr):
+            link = '"' + arr[i][2] + '.html"'
+            res.append(link)
+            i += 1
+    except:
+        res = []
     return res

@@ -21,7 +21,10 @@ def data():
   data = table_rows("peers")
   name = "Peers"
   all = all_tables()
-  return render_template('data.html', all=all, data=data, titles=titles, name=name)
+  links = all_links()
+  return render_template('data.html', all=all,
+                         data=data, titles=titles,
+                         name=name, links=links)
 
 @app_route.route('/operations')
 @app_route.route('/operations.php')
