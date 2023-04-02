@@ -24,6 +24,9 @@ help:
 	@echo -e "$(WARN_COLOR)- make build			: Building configuration"
 	@echo -e "$(WARN_COLOR)- make down			: Stopping configuration"
 	@echo -e "$(WARN_COLOR)- make re			: Rebuild configuration"
+	@echo -e "$(WARN_COLOR)- make refl			: Rebuild flask configuration"
+	@echo -e "$(WARN_COLOR)- make repa			: Rebuild pgadmin configuration"
+	@echo -e "$(WARN_COLOR)- make reps			: Rebuild postgres configuration"
 	@echo -e "$(WARN_COLOR)- make ps			: View configuration"
 	@echo -e "$(WARN_COLOR)- make clean			: Cleaning configuration$(NO_COLOR)"
 
@@ -38,6 +41,18 @@ down:
 re:
 	@printf "$(OK_COLOR)==== Rebuild configuration ${name}... ====$(NO_COLOR)\n"
 	@docker-compose -f ./docker-compose.yml up -d --no-deps --build
+
+refl:
+	@printf "$(OK_COLOR)==== Rebuild postgres... ====$(NO_COLOR)\n"
+	@docker-compose -f ./docker-compose.yml up -d --no-deps --build flask
+
+reps:
+	@printf "$(OK_COLOR)==== Rebuild postgres... ====$(NO_COLOR)\n"
+	@docker-compose -f ./docker-compose.yml up -d --no-deps --build postgres
+
+repa:
+	@printf "$(OK_COLOR)==== Rebuild pgadmin... ====$(NO_COLOR)\n"
+	@docker-compose -f ./docker-compose.yml up -d --no-deps --build pgadmin
 
 ps:
 	@printf "$(BLUE)==== View configuration ${name}... ====$(NO_COLOR)\n"
