@@ -3,8 +3,7 @@ from model.database.sql_query import *
 def table_titles(table):
     arr = fetchall_query(f"SELECT column_name FROM information_schema.columns WHERE table_name = '{table}' ORDER BY ordinal_position;")
     list_arr = list(arr)
-    list_arr.append("('action',)")
-    print(list_arr)
+    list_arr.append(('action',))
     return list_arr
 
 
@@ -16,6 +15,7 @@ def table_rows(table):
         str_list.append("edit")
         arr[i] = str_list
         i += 1
+    print(arr)
     return arr
 
 def all_tables():
