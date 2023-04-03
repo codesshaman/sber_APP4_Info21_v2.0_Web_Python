@@ -10,72 +10,30 @@
     <section class="u-align-center u-clearfix op-section-2" id="sec-847a">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="u-expanded-width u-table u-table-responsive u-table-1">
+        <h1>Все таблицы в базе данных</h1>
+            {% for table in tables %}
+            <div class="u-repeater u-repeater-1">
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-1">
+                  <h4 class="u-text u-text-default u-text-2">{{ table[0].title() }}</h4>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-2">
+                  <a href="data/{{ table[0] }}" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-4">Просмотреть / Редактировать</a>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-3">
+                  <form action="{{ url_for('route.delete_table') }}" method="POST">
+                      <input type="hidden" name="table_name" value="{{ table[0] }}">
+                      <input type="submit" value="Удалить" onclick="return confirm('Вы уверены, что хотите удалить таблицу {{ table[0] }}? Также удалятся все таблицы, зависимые от этой.')" class="u-btn u-btn-round u-button-style u-hover-palette-2-base u-palette-3-base u-radius-1 u-btn-3">
+                  </form>
+              </div>
 
-<!--    ВЫВОД ТАБЛИЦЫ ПОЛЬЗОВАТЕЛЕЙ     -->
-<!--            <h2 class="u-align-center u-text u-text-default u-text-1">-->
-<!--                All tables<br>-->
-<!--            </h2>-->
-            <thead class="u-palette-4-base u-table-header u-table-header-1">
-              <tr style="height: 48px;">
-              {% for tbl in all %}
-                <a class="u-border-1 u-border-custom-color-1 u-table-cell" link={{links}}>{{tbl[2].title()}}</a>
-              {% endfor %}
-              </tr>
-            </thead>
-            <h2 class="u-align-center u-text u-text-default u-text-1">
-                {{name}} table<br>
-            </h2>
-          <table class="u-table-entity u-table-entity-1">
-            <colgroup>
-              <col width="50%">
-              <col width="50%">
-            </colgroup>
-
-            <thead class="u-palette-4-base u-table-header u-table-header-1">
-              <tr style="height: 48px;">
-              {% for header in titles %}
-                <th class="u-border-1 u-border-custom-color-1 u-table-cell">{{header[0].title()}}</th>
-              {% endfor %}
-              </tr>
-            </thead>
-
-            <tbody class="u-table-body">
-              {% for rows in data %}
-              <tr style="height: 48px;">
-                {% for cell in rows %}
-                <td class="u-border-1 u-border-grey-30 u-table-cell">{{ cell }}</td>
-                {% endfor %}
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-            {{links}}
-            <p><a href="#top" class="topLink">Наверх</a></p>
-<!--    ВЫВОД ТАБЛИЦЫ      -->
-<!--          <table class="u-table-entity u-table-entity-1">-->
-<!--            <colgroup>-->
-<!--              <col width="50%">-->
-<!--              <col width="50%">-->
-<!--            </colgroup>-->
-<!--            <thead class="u-palette-4-base u-table-header u-table-header-1">-->
-<!--              <tr style="height: 48px;">-->
-<!--              {% for tbl in all %}-->
-<!--                <th class="u-border-1 u-border-custom-color-1 u-table-cell">{{tbl[2].title()}}</th>-->
-<!--              {% endfor %}-->
-<!--              </tr>-->
-<!--            </thead>-->
-
-<!--            <tbody class="u-table-body">-->
-<!--              {% for rows in data %}-->
-<!--              <tr style="height: 48px;">-->
-<!--                {% for cell in rows %}-->
-<!--                <td class="u-border-1 u-border-grey-30 u-table-cell">{{ cell }}</td>-->
-<!--                {% endfor %}-->
-<!--              </tr>-->
-<!--              {% endfor %}-->
-<!--            </tbody>-->
-<!--          </table>-->
-<!--    КОНЕЦ ВЫВОДА     -->
+            </div>
+          </div>
+            {% endfor %}
         </div>
       </div>
     </section>

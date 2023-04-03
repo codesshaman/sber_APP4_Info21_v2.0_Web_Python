@@ -32,6 +32,7 @@ services:
       timeout: 5s
       retries: 5
     restart: unless-stopped
+    user: 70:70
     volumes:
       - ./dump:/docker-entrypoint-initdb.d:z
     ports:

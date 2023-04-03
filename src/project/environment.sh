@@ -15,5 +15,4 @@ if [ ! -f "requirements.txt" ]; then
     pip install -r requirements.txt
     pip freeze
 fi
-echo "For switch to environment use command: "
-echo "source venv/bin/activate"
+source venv/bin/activate

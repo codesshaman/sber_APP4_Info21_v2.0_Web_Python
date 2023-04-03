@@ -1,5 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect, url_for
 from model.templates.datapage import *
+import sys
+from model.database.sql_query import fetchall_query
+
 app_route = Blueprint('route', __name__)
 
 @app_route.route('/')
@@ -17,14 +20,29 @@ def index():
 @app_route.route('/data.html')
 def data():
   "Функция отображения страницы 'данные'"
-  titles = table_titles("peers")
-  data = table_rows("peers")
-  name = "Peers"
-  all = all_tables()
-  links = all_links()
-  return render_template('data.html', all=all,
-                         data=data, titles=titles,
-                         name=name, links=links)
+  # print("###################################", file=sys.stderr)
+
+  tables = all_tables()
+  # print(tables, file=sys.stderr)
+
+  return render_template('data.html', tables=tables)
+
+
+@app_route.route('/data/<path:table_name>')
+def table(table_name):
+  "Функция отображения страницы таблицы"
+  columns = table_titles(table_name)
+  rows = table_rows(table_name)
+  name = table_name
+
+  return render_template('table.html', rows=rows, columns=columns, name=name)
+
+@app_route.route('/delete_table', methods=['GET', 'POST'])
+def delete_table():
+    if request.method == 'POST':
+        table_name = request.form['table_name']
+        drop_table(table_name)
+    return redirect(url_for('route.data'))
 
 @app_route.route('/operations')
 @app_route.route('/operations.php')
@@ -33,11 +51,3 @@ def data():
 def operations():
   "Функция отображения страницы 'операции'"
   return render_template('operations.html')
-
-@app_route.route('/about')
-@app_route.route('/about.php')
-@app_route.route('/about.htm')
-@app_route.route('/about.html')
-def about():
-  "Функция отображения страницы 'о нас'"
-  return render_template('about.html')
