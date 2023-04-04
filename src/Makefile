@@ -70,4 +70,4 @@ fclean:
 	# @docker network prune --force
 	# @docker volume prune --force
 
-.PHONY	: all help build down re ps clean fclean
+.PHONY	: all help build down re refl repa reps ps clean fclean

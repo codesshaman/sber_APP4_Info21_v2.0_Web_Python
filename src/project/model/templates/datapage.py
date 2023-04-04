@@ -1,5 +1,9 @@
 from model.database.sql_query import *
 
+# def table_titles(table):
+#     arr = fetchall_query(f"SELECT column_name FROM information_schema.columns WHERE table_name = '{table}' ORDER BY ordinal_position;")
+#     return arr
+
 def table_titles(table):
     arr = fetchall_query(f"SELECT column_name FROM information_schema.columns WHERE table_name = '{table}' ORDER BY ordinal_position;")
     list_arr = list(arr)
@@ -7,15 +11,29 @@ def table_titles(table):
     return list_arr
 
 
+# def table_rows(table):
+#     return fetchall_query(f"SELECT * FROM {table};")
+
 def table_rows(table):
     arr = fetchall_query(f"SELECT * FROM {table};")
     i = 0
-    for str in arr:
-        str_list = list(str)
-        str_list.append("edit")
+    res = []
+    for string in arr:
+        j = 0
+        strres = []
+        str_list = list(string)
+        for el in str_list:
+            # print("---")
+            elem = str_list[j]
+            link = "#edit" + "_" + str(elem) + "_" + str(i) + "_" + str(j)
+            elem = [str(elem), link]
+            # print(type(elem))
+            str_list[j] = elem
+            j+=1
+        dellink="#del" + "_" + str(i) 
+        str_list.append(["[delete]", dellink])
         arr[i] = str_list
         i += 1
-    print(arr)
     return arr
 
 def all_tables():

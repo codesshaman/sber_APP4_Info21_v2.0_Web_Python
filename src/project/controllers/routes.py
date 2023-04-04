@@ -20,11 +20,7 @@ def index():
 @app_route.route('/data.html')
 def data():
   "Функция отображения страницы 'данные'"
-  # print("###################################", file=sys.stderr)
-
   tables = all_tables()
-  # print(tables, file=sys.stderr)
-
   return render_template('data.html', tables=tables)
 
 

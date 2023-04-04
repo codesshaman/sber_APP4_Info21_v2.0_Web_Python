@@ -674,29 +674,14 @@
   margin: 24px auto 0;
 }
 
-.plain-link:visited {
-  text-decoration: none;
-  color: #1f5b58;
-}
-
-.plain-link:active {
-  text-decoration: none;
-  color: #1f5b58;
-}
-
-.plain-link:link {
-  text-decoration: none;
-  color: #1f5b58;
-}
-
-.plain-link:hover {
-  text-decoration: none;
-  color: #1f5b58;
-}
-
 .u-section-1 .u-btn-5 {
   font-weight: 700;
   font-size: 0.9375rem;
   margin: 24px auto 60px;
   padding: 8px 33px;
+}
+
+.plain-link:link {
+  text-decoration: underline;
+  color: #1f5b58;
 }
