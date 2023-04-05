@@ -25,13 +25,13 @@ def table_rows(table):
         for el in str_list:
             # print("---")
             elem = str_list[j]
-            link = "#edit" + "_" + str(elem) + "_" + str(i) + "_" + str(j)
-            elem = [str(elem), link]
+            # link = "#edit" + "_" + str(elem) + "_" + str(i) + "_" + str(j)
+            elem = [str(elem), str(i), str(j), "Ячейка для редактирования: "]
             # print(type(elem))
             str_list[j] = elem
             j+=1
         dellink="#del" + "_" + str(i) 
-        str_list.append(["[delete]", dellink])
+        str_list.append(["удалить", str(i), str(j), "Подтвердите действие для строки: "])
         arr[i] = str_list
         i += 1
     return arr

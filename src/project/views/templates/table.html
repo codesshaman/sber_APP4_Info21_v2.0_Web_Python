@@ -24,7 +24,7 @@
                 {% for row in rows %}
                   <tr style="height: 48px;">
                     {% for value in row %}
-                      <td class="u-border-1 u-border-grey-30 u-table-cell"><a class="plain-link" href="{{ value[1] }}">{{ value[0] }}</a></td>
+                      <td class="u-border-1 u-border-grey-30 u-table-cell"><a class="plain-link" onclick="return confirm('{{ value[3] }} ({{ value[1] }} {{ value[2] }}) {{ value[0] }}?')" href="{{ value[1] }}">{{ value[0] }}</a></td>
                     {% endfor %}
                   </tr>
                 {% endfor %}
