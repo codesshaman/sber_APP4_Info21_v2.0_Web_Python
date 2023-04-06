@@ -34,7 +34,7 @@ def table(table_name):
   return render_template('table.html', rows=rows, columns=columns, name=name)
 
 
-@app_route.route('/delete_table', methods=['GET', 'POST'])
+@app_route.route('/delete_table', methods=['POST'])
 def delete_table():
     if request.method == 'POST':
         table_name = request.form['table_name']
@@ -42,7 +42,7 @@ def delete_table():
     return redirect(url_for('route.data'))
 
 
-@app_route.route('/delete_row', methods=['GET', 'POST'])
+@app_route.route('/delete_row', methods=['POST'])
 def delete_row():
     if request.method == 'POST':
         row_name = request.td[value[0]]

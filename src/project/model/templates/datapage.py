@@ -31,7 +31,3 @@ def all_tables():
 
 def drop_table(table_name):
     return drop_query(f"DROP TABLE {table_name} CASCADE;")
-
-
-def drop_table(table_name):
-    return drop_query(f"DROP TABLE {table_name} CASCADE;")
