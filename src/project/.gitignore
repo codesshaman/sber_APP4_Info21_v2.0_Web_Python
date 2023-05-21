@@ -1,5 +1,6 @@
 __pycache__
-config.ini
+#config.ini
 .DS_Store
-logs
+logs/*
+data
 venv
